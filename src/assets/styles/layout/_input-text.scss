@@ -1,0 +1,18 @@
+@use "primeng/resources/themes/md-dark-deeppurple/theme.css";
+
+.input-field {
+  width: 100%;
+  margin-bottom: 2%;
+}
+
+.input-field span{
+  width: 100%;
+}
+.input-field input{
+  width: 100%;
+}
+
+
+.input-field .p-input-icon-left i.error-icon{
+  @extend .p-error;
+}

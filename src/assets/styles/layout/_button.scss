@@ -1,0 +1,14 @@
+.button-holder {
+  display: flex;
+  margin-bottom: 2%;
+  width: 20%;
+
+}
+
+.button-holder button {
+  width: 100%;
+}
+
+.button-right {
+  justify-content: right;
+}

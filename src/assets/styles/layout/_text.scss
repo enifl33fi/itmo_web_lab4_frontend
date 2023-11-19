@@ -1,0 +1,23 @@
+.big-header {
+  font-size: 2.5em;
+  font-weight: bold;
+}
+
+.additional-text {
+  font-size: 1em;
+  color: var(--gray-400);
+}
+
+.additional-text-small {
+  font-size: 0.8em;
+  color: var(--gray-400);
+}
+.hidden-text {
+  opacity: 0.0;
+}
+.message-block .error-message {
+  display: none;
+}
+.message-block .error-message:first-child {
+  display: block;
+}

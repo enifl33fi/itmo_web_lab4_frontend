@@ -1,0 +1,40 @@
+.header {
+  position: relative;
+  display: flex;
+  width: 65%;
+  height: 20%;
+  margin: 20% auto;
+}
+
+.header-info {
+  font-family: sans-serif;
+  font-size: 18px;
+  margin-left: 5%;
+}
+
+.header a {
+  margin: 1% 5px;
+}
+
+.header .profile-pic {
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  margin: auto;
+}
+
+.username-input {
+  width: 100%;
+  margin-bottom: 5%;
+}
+.username-input input {
+  width: 100%;
+}
+.button-holder {
+  margin-right: 0;
+  margin-left: auto;
+}
+
+.welcome-content {
+  margin-bottom: 20%;
+}

@@ -1,0 +1,13 @@
+$borderRadius: 12px;
+
+
+.card {
+  background: var(--surface-card);
+  padding: 2% 5%;
+  box-shadow: var(--card-shadow);
+  border-radius: $borderRadius;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}

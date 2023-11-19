@@ -1,0 +1,71 @@
+<div class="card signin-content">
+  <h1 class="big-header" style="margin-bottom: 5px">Sign In</h1>
+  <div class="text-block">
+    <p class="additional-text">New here? <a routerLink="/signup" [queryParams]="{username: givenUsername}">Sign up→</a></p>
+  </div>
+  <form [formGroup]="signInForm">
+    <div class="input-field">
+      <span class="p-float-label p-input-icon-left">
+        <i class="pi pi-user" [class.error-icon]="username?.invalid && username?.dirty"></i>
+        <input pInputText name = "username" id="username" type="text" formControlName="username"/>
+        <label htmlFor="username">Username</label>
+      </span>
+      <small [ngClass]="{
+      'p-error': true,
+      'hidden-text': !(username?.invalid && username?.dirty)
+      }">
+        <div class="message-block">
+          <div class="error-message" *ngIf="username?.errors?.['required']">
+            Username can't be empty
+          </div>
+
+          <div class="error-message" *ngIf="username?.errors?.['maxlength']">
+            Username can't be longer than 25 symbols
+          </div>
+
+          <div class="error-message">
+            Username can only contain Latin letters, numbers, and the symbol _
+          </div>
+        </div>
+      </small>
+    </div>
+
+    <div class="input-field">
+      <span class="p-float-label p-input-icon-left">
+        <i class="pi pi-lock" [class.error-icon]="password?.invalid && password?.dirty"></i>
+        <input pInputText name = "password" id="password" type="password" formControlName="password"/>
+        <label htmlFor="username">Password</label>
+      </span>
+      <small [ngClass]="{
+      'p-error': true,
+      'hidden-text': !(password?.invalid && password?.dirty)
+      }">
+        <div class="message-block">
+          <div class="error-message">
+            Password can't be empty
+          </div>
+        </div>
+      </small>
+    </div>
+
+    <div class="control-content">
+      <div class="checkbox-container">
+        <p-checkbox [binary] = true inputId="save-required" formControlName="isToSave"></p-checkbox>
+        <label for="save-required">Save me</label>
+        <div class="icon">
+          <p-overlayPanel  #addon>
+            <div class="panel-content">
+              <h5>Save me</h5>
+              <p class="additional-text-small">Check this box if you want your account information saved for quick login on this device.</p>
+            </div>
+          </p-overlayPanel>
+          <i class="pi pi-question-circle additional-text" (mouseleave)="addon.hide()" (mouseenter)="addon.show($event)"></i>
+        </div>
+      </div>
+
+      <div class="button-holder">
+        <button pButton pRipple label="Sign in" type="submit" class="p-button-outlined" [disabled]="username?.invalid || password?.invalid"></button>
+      </div>
+    </div>
+  </form>
+</div>
