@@ -3,7 +3,8 @@
   <div class="text-block">
     <p class="additional-text">New here? <a routerLink="/signup" [queryParams]="{username: givenUsername}">Sign up→</a></p>
   </div>
-  <form [formGroup]="signInForm">
+
+  <form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
     <div class="input-field">
       <span class="p-float-label p-input-icon-left">
         <i class="pi pi-user" [class.error-icon]="username?.invalid && username?.dirty"></i>
@@ -34,7 +35,7 @@
       <span class="p-float-label p-input-icon-left">
         <i class="pi pi-lock" [class.error-icon]="password?.invalid && password?.dirty"></i>
         <input pInputText name = "password" id="password" type="password" formControlName="password"/>
-        <label htmlFor="username">Password</label>
+        <label htmlFor="password">Password</label>
       </span>
       <small [ngClass]="{
       'p-error': true,
@@ -64,8 +65,10 @@
       </div>
 
       <div class="button-holder">
-        <button pButton pRipple label="Sign in" type="submit" class="p-button-outlined" [disabled]="username?.invalid || password?.invalid"></button>
+        <button pButton pRipple label="Sign in" type="submit" class="p-button-outlined" [disabled]="!signInForm.valid" [loading]="loading"></button>
       </div>
     </div>
   </form>
+
+  <p-toast></p-toast>
 </div>

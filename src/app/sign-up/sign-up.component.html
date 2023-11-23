@@ -4,7 +4,7 @@
     <p class="additional-text">It will take only few steps</p>
     <p class="additional-text">Already have an account? <a routerLink="/signin" [queryParams]="{username: givenUsername}">Sign in→</a></p>
   </div>
-  <form [formGroup]="signUpForm">
+  <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
     <div class="input-field">
       <span class="p-float-label p-input-icon-left">
         <i class="pi pi-user" [class.error-icon]="username?.invalid && username?.dirty"></i>
@@ -35,7 +35,7 @@
       <span class="p-float-label p-input-icon-left">
         <i class="pi pi-lock" [class.error-icon]="password?.invalid && password?.dirty"></i>
         <input pInputText name = "password" id="password" type="password" formControlName="password"/>
-        <label htmlFor="username">Password</label>
+        <label htmlFor="password">Password</label>
       </span>
       <small [ngClass]="{
       'p-error': true,
@@ -65,7 +65,7 @@
       </div>
 
       <div class="button-holder">
-        <button pButton pRipple label="Sign up" type="submit" class="p-button-outlined" [disabled]="username?.invalid || password?.invalid"></button>
+        <button pButton pRipple label="Sign up" type="submit" class="p-button-outlined" [disabled]="!signUpForm.valid"></button>
       </div>
     </div>
   </form>

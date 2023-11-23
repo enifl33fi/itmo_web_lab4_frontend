@@ -1,6 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {ValidationService} from "../validation.service";
+import {UserForm, UserRegistration} from "../dto/userDto";
+import {StorageService} from "../storage.service";
+import {AuthenticationService} from "../authentication.service";
+import {MapperService} from "../mapper.service";
 
 @Component({
   selector: 'app-sign-up',
@@ -20,7 +24,10 @@ export class SignUpComponent implements OnInit {
     isToSave: new FormControl<boolean>(true)
   })
 
-  constructor(private validationService: ValidationService) {
+  constructor(private validationService: ValidationService,
+              private storageService: StorageService,
+              private authenticationService: AuthenticationService,
+              private mapperService: MapperService) {
   }
 
   ngOnInit(): void {
@@ -36,6 +43,11 @@ export class SignUpComponent implements OnInit {
 
   get password() {
     return this.signUpForm.get('password');
+  }
+
+  onSubmit(): void {
+    const givenUser: UserForm = this.signUpForm.value as UserForm;
+    this.authenticationService.register(this.mapperService.mapUserFormToRegistration(givenUser));
   }
 
 }

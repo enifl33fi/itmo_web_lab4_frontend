@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { CardModule } from 'primeng/card';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-welcome-page',
@@ -8,4 +7,6 @@ import { CardModule } from 'primeng/card';
 })
 export class WelcomePageComponent {
   welcomePhrase: string = "Your journey starts here"
+  constructor() {
+  }
 }

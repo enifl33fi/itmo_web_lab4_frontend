@@ -1,6 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ValidationService} from "../validation.service";
+import {UserForm} from "../dto/userDto";
+import {AuthApiService} from "../auth-api.service";
 
 @Component({
   selector: 'app-sign-in',
@@ -9,6 +11,8 @@ import {ValidationService} from "../validation.service";
 })
 export class SignInComponent implements OnInit {
   @Input("username") givenUsername?: string;
+
+  loading:boolean = false;
 
   signInForm: FormGroup = new FormGroup({
     username: new FormControl<string>('',
@@ -20,7 +24,8 @@ export class SignInComponent implements OnInit {
     isToSave: new FormControl<boolean>(true)
   })
 
-  constructor(private validationService: ValidationService) {
+  constructor(private validationService: ValidationService,
+              private authApiService: AuthApiService) {
   }
 
   get username() {
@@ -36,5 +41,10 @@ export class SignInComponent implements OnInit {
       this.username?.setValue(this.givenUsername);
       this.username?.markAsDirty({onlySelf: true})
     }
+  }
+
+  onSubmit(): void {
+    const givenUser: UserForm = this.signInForm.value as UserForm;
+    this.authApiService.loginUser(givenUser);
   }
 }
