@@ -25,6 +25,7 @@ export class AuthApiService {
         (data: UserTokens|null) => {
           if (data) {
             this.storageService.storeTokens(data);
+            this.router.navigate(["/main"]);
           }
         });
   }

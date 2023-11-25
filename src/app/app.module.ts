@@ -20,6 +20,7 @@ import { CustomInputComponent } from './custom-input/custom-input.component';
 import {ToastModule} from "primeng/toast";
 import {MessageService} from "primeng/api";
 import {TokenInterceptor} from "./token.interceptor";
+import { MainComponent } from './main/main.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import {TokenInterceptor} from "./token.interceptor";
     WelcomePageComponent,
     SignUpComponent,
     SignInComponent,
-    CustomInputComponent
+    CustomInputComponent,
+    MainComponent
   ],
     imports: [
         BrowserModule,

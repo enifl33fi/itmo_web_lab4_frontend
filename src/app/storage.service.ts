@@ -41,8 +41,8 @@ export class StorageService implements OnInit{
   }
 
   storeTokens(tokens: UserTokens): void {
-    sessionStorage.setItem(this.ACCESS_TOKEN, tokens.access);
-    this.saveRefreshToken(tokens.refresh);
+    sessionStorage.setItem(this.ACCESS_TOKEN, tokens.accessToken);
+    this.saveRefreshToken(tokens.refreshToken);
   }
 
   removeAccessToken(): void {

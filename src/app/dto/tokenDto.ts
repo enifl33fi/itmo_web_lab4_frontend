@@ -1,6 +1,6 @@
 export interface UserTokens {
-  access: string,
-  refresh: string
+  accessToken: string,
+  refreshToken: string
 }
 
 export interface RefreshToken {
