@@ -6,6 +6,7 @@ import {StorageService} from "../storage.service";
 import {AuthenticationService} from "../authentication.service";
 import {MapperService} from "../mapper.service";
 import {UniqueUsernameValidator} from "../unique-username-validator";
+import {AuthApiService} from "../auth-api.service";
 
 @Component({
   selector: 'app-sign-up',
@@ -31,7 +32,8 @@ export class SignUpComponent implements OnInit {
   })
 
   constructor(private validationService: ValidationService,
-              private usernameValidator: UniqueUsernameValidator) {
+              private usernameValidator: UniqueUsernameValidator,
+              private authApiService: AuthApiService) {
   }
 
   ngOnInit(): void {
@@ -51,7 +53,7 @@ export class SignUpComponent implements OnInit {
 
   onSubmit(): void {
     const givenUser: UserForm = this.signUpForm.value as UserForm;
-    console.log(givenUser)
+    this.authApiService.registerUser(givenUser);
   }
 
 }

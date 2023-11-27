@@ -20,8 +20,15 @@ export class AuthenticationService {
               private alertApiService: AlertApiService) {
   }
 
-  register(userToRegister: UserRegistration): void {
-    console.log(userToRegister);
+  register(userToRegister: UserRegistration): Observable<UserTokens | null> {
+    return this.http.post<UserTokens | null>(`${AUTH_URL}/register`,
+      userToRegister,
+      httpOptions).pipe(
+        catchError((err: HttpErrorResponse) => {
+          this.handleError(err);
+          return of(null)
+        })
+    )
   }
 
   login(userToLogin: UserLogin): Observable<UserTokens | null> {

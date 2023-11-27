@@ -19,6 +19,18 @@ export class AuthApiService {
 
   }
 
+  registerUser(user: UserForm): void {
+    this.storageService.setDeepSave(user.isToSave);
+    this.authenticationService.register(this.mapperService.mapUserFormToRegistration(user)).subscribe(
+      (data: UserTokens|null) => {
+        if (data) {
+          this.storageService.storeTokens(data);
+          this.router.navigate(["/main"]);
+        }
+      }
+    )
+  }
+
   loginUser(user: UserForm): void {
     this.storageService.setDeepSave(user.isToSave);
     this.authenticationService.login(this.mapperService.mapUserFormToLogin(user)).subscribe(
