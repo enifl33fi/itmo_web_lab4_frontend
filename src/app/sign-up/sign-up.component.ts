@@ -5,6 +5,7 @@ import {UserForm, UserRegistration} from "../dto/userDto";
 import {StorageService} from "../storage.service";
 import {AuthenticationService} from "../authentication.service";
 import {MapperService} from "../mapper.service";
+import {UniqueUsernameValidator} from "../unique-username-validator";
 
 @Component({
   selector: 'app-sign-up',
@@ -16,18 +17,21 @@ export class SignUpComponent implements OnInit {
 
   signUpForm: FormGroup = new FormGroup({
     username: new FormControl<string>('',
-      [Validators.required,
+      {
+        validators: [Validators.required,
         Validators.maxLength(25),
-        this.validationService.usernameValidator()]),
+        this.validationService.usernameValidator()],
+        asyncValidators: [
+          this.usernameValidator.validate.bind(this.usernameValidator)
+        ]
+      }),
     password: new FormControl<string>('',
       [Validators.required]),
     isToSave: new FormControl<boolean>(true)
   })
 
   constructor(private validationService: ValidationService,
-              private storageService: StorageService,
-              private authenticationService: AuthenticationService,
-              private mapperService: MapperService) {
+              private usernameValidator: UniqueUsernameValidator) {
   }
 
   ngOnInit(): void {
@@ -47,7 +51,7 @@ export class SignUpComponent implements OnInit {
 
   onSubmit(): void {
     const givenUser: UserForm = this.signUpForm.value as UserForm;
-    this.authenticationService.register(this.mapperService.mapUserFormToRegistration(givenUser));
+    console.log(givenUser)
   }
 
 }

@@ -5,7 +5,7 @@ import {MapperService} from "./mapper.service";
 import {UserForm} from "./dto/userDto";
 import {UserTokens} from "./dto/tokenDto";
 import {Router} from "@angular/router";
-import {Observable, of, tap, throwError} from "rxjs";
+import {Observable, tap, throwError} from "rxjs";
 
 @Injectable({
   providedIn: 'root'

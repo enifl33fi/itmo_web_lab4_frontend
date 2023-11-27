@@ -6,8 +6,9 @@
   </div>
   <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
     <div class="input-field">
-      <span class="p-float-label p-input-icon-left">
-        <i class="pi pi-user" [class.error-icon]="username?.invalid && username?.dirty"></i>
+      <span class="p-float-label p-input-icon-left" >
+        <i class="pi pi-user" [class.error-icon]="username?.invalid && username?.dirty" *ngIf="!username?.pending"></i>
+        <i class="pi pi-spin pi-spinner" *ngIf="username?.pending"></i>
         <input pInputText name = "username" id="username" type="text" formControlName="username"/>
         <label htmlFor="username">Username</label>
       </span>
@@ -24,8 +25,11 @@
             Username can't be longer than 25 symbols
           </div>
 
-          <div class="error-message">
+          <div class="error-message" *ngIf="username?.errors?.['invalidUsername']">
             Username can only contain Latin letters, numbers, and the symbol _
+          </div>
+          <div class="error-message">
+            Username should be unique
           </div>
         </div>
       </small>
@@ -69,4 +73,6 @@
       </div>
     </div>
   </form>
+
+  <p-toast></p-toast>
 </div>
