@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -21,6 +21,7 @@ import {ToastModule} from "primeng/toast";
 import {MessageService} from "primeng/api";
 import {TokenInterceptor} from "./token.interceptor";
 import { MainComponent } from './main/main.component';
+import {StorageService} from "./storage.service";
 
 
 @NgModule({
@@ -51,6 +52,12 @@ import { MainComponent } from './main/main.component';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
+      multi: true
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: (storageService: StorageService) => () => storageService.onInit(),
+      deps: [StorageService],
       multi: true
     }],
   bootstrap: [AppComponent]

@@ -4,12 +4,12 @@ import {UserTokens} from "./dto/tokenDto";
 @Injectable({
   providedIn: 'root'
 })
-export class StorageService implements OnInit{
+export class StorageService{
   private deepSave: boolean = false;
   private readonly ACCESS_TOKEN: string = 'ACCESS_TOKEN';
   private readonly REFRESH_TOKEN: string = 'REFRESH_TOKEN';
 
-  ngOnInit() {
+  onInit() {
     if (this.getLocalRefreshToken()){
       this.deepSave = true;
     }
