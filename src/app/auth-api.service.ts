@@ -5,7 +5,8 @@ import {MapperService} from "./mapper.service";
 import {UserForm} from "./dto/userDto";
 import {UserTokens} from "./dto/tokenDto";
 import {Router} from "@angular/router";
-import {Observable, tap, throwError} from "rxjs";
+import {Observable, Subject, tap, throwError} from "rxjs";
+import {LoadingService} from "./loading.service";
 
 @Injectable({
   providedIn: 'root'
@@ -15,31 +16,42 @@ export class AuthApiService {
   constructor(private storageService: StorageService,
               private authenticationService: AuthenticationService,
               private mapperService: MapperService,
-              private router: Router) {
+              private router: Router,
+              private loadingService: LoadingService) {
 
   }
 
-  registerUser(user: UserForm): void {
+  authorize(
+    user: UserForm,
+    authObservable: Observable<UserTokens | null>,
+    loadingSubj?: Subject<boolean>
+  ) {
     this.storageService.setDeepSave(user.isToSave);
-    this.authenticationService.register(this.mapperService.mapUserFormToRegistration(user)).subscribe(
-      (data: UserTokens|null) => {
-        if (data) {
-          this.storageService.storeTokens(data);
-          this.router.navigate(["/main"]);
-        }
+    authObservable.pipe(
+      this.loadingService.handleLoading(loadingSubj)
+    ).subscribe((data: UserTokens|null) => {
+      if (data) {
+        this.storageService.storeTokens(data);
+        this.router.navigate(["/main"]);
       }
-    )
+    })
   }
 
-  loginUser(user: UserForm): void {
-    this.storageService.setDeepSave(user.isToSave);
-    this.authenticationService.login(this.mapperService.mapUserFormToLogin(user)).subscribe(
-        (data: UserTokens|null) => {
-          if (data) {
-            this.storageService.storeTokens(data);
-            this.router.navigate(["/main"]);
-          }
-        });
+
+  registerUser(user: UserForm, loadingSubj?: Subject<boolean>): void {
+    this.authorize(
+      user,
+      this.authenticationService.register(this.mapperService.mapUserFormToRegistration(user)),
+      loadingSubj
+    );
+  }
+
+  loginUser(user: UserForm, loadingSubj?: Subject<boolean>): void {
+    this.authorize(
+      user,
+      this.authenticationService.login(this.mapperService.mapUserFormToLogin(user)),
+      loadingSubj
+    );
   }
 
   refreshTokens(): Observable<UserTokens> {

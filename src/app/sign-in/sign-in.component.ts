@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ValidationService} from "../validation.service";
 import {UserForm} from "../dto/userDto";
 import {AuthApiService} from "../auth-api.service";
+import {BehaviorSubject, Subject} from "rxjs";
 
 @Component({
   selector: 'app-sign-in',
@@ -12,7 +13,7 @@ import {AuthApiService} from "../auth-api.service";
 export class SignInComponent implements OnInit {
   @Input("username") givenUsername?: string;
 
-  loading:boolean = false;
+  loading$ = new BehaviorSubject<boolean>(false)
 
   signInForm: FormGroup = new FormGroup({
     username: new FormControl<string>('',
@@ -45,6 +46,6 @@ export class SignInComponent implements OnInit {
 
   onSubmit(): void {
     const givenUser: UserForm = this.signInForm.value as UserForm;
-    this.authApiService.loginUser(givenUser);
+    this.authApiService.loginUser(givenUser, this.loading$);
   }
 }

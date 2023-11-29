@@ -7,6 +7,7 @@ import {AuthenticationService} from "../authentication.service";
 import {MapperService} from "../mapper.service";
 import {UniqueUsernameValidator} from "../unique-username-validator";
 import {AuthApiService} from "../auth-api.service";
+import {BehaviorSubject} from "rxjs";
 
 @Component({
   selector: 'app-sign-up',
@@ -15,6 +16,7 @@ import {AuthApiService} from "../auth-api.service";
 })
 export class SignUpComponent implements OnInit {
   @Input("username") givenUsername?: string;
+  loading$ = new BehaviorSubject<boolean>(false)
 
   signUpForm: FormGroup = new FormGroup({
     username: new FormControl<string>('',
@@ -53,7 +55,7 @@ export class SignUpComponent implements OnInit {
 
   onSubmit(): void {
     const givenUser: UserForm = this.signUpForm.value as UserForm;
-    this.authApiService.registerUser(givenUser);
+    this.authApiService.registerUser(givenUser, this.loading$);
   }
 
 }

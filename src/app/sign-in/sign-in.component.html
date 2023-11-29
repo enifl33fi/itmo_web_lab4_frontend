@@ -65,7 +65,7 @@
       </div>
 
       <div class="button-holder">
-        <button pButton pRipple label="Sign in" type="submit" class="p-button-outlined" [disabled]="!signInForm.valid" [loading]="loading"></button>
+        <button pButton pRipple label="Sign in" type="submit" class="p-button-outlined" [disabled]="!signInForm.valid" [loading]="(loading$ | async) || false"></button>
       </div>
     </div>
   </form>
