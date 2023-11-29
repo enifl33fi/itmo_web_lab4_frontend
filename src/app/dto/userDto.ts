@@ -4,14 +4,22 @@ export interface UserForm {
   isToSave: boolean;
 }
 
-export interface UserRegistration {
+export interface RegUserForm extends UserForm {
+
+}
+export interface LoginUserForm extends UserForm {
+
+}
+
+export interface UserAuth {
   username: string;
   password: string;
 }
 
-export interface UserLogin {
-  username: string;
-  password: string;
+export interface UserRegistration extends UserAuth{
+}
+
+export interface UserLogin extends UserAuth{
 }
 
 export interface UserUnique {

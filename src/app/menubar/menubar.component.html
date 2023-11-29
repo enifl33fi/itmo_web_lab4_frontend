@@ -1,0 +1,9 @@
+<div class="topbar">
+
+  <ng-template [ngIf]="!authApiService.isLogged()">
+    <div class="topbar-right-content">
+      <button pButton pRipple label="Sign in" class="topbar-button p-button-plain p-button-text" routerLink="/signin"></button>
+      <button pButton pRipple label="Sign up" class="p-button-outlined topbar-button" routerLink="/signup"></button>
+    </div>
+  </ng-template>
+</div>

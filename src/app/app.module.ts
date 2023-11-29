@@ -22,6 +22,9 @@ import {MessageService} from "primeng/api";
 import {TokenInterceptor} from "./token.interceptor";
 import { MainComponent } from './main/main.component';
 import {StorageService} from "./storage.service";
+import { MenubarComponent } from './menubar/menubar.component';
+import { AuthLayoutComponent } from './auth-layout/auth-layout.component';
+import { BasicLayoutComponent } from './basic-layout/basic-layout.component';
 
 
 @NgModule({
@@ -31,7 +34,10 @@ import {StorageService} from "./storage.service";
     SignUpComponent,
     SignInComponent,
     CustomInputComponent,
-    MainComponent
+    MainComponent,
+    MenubarComponent,
+    AuthLayoutComponent,
+    BasicLayoutComponent
   ],
     imports: [
         BrowserModule,

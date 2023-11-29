@@ -1,0 +1,18 @@
+.topbar {
+  height: 5rem;
+  width: 100%;
+  padding: 0 2rem;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+}
+.topbar .topbar-right-content {
+  margin: 0 0 0 auto;
+  padding: 0;
+  list-style: none;
+  display: flex;
+
+  .topbar-button {
+    margin-left: 1rem;
+  }
+}
