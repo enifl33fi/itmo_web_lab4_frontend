@@ -1,0 +1,37 @@
+<p-table
+  [value]="results"
+  [paginator]="true"
+  [rows] = "5"
+  [rowHover]="true"
+  [showCurrentPageReport]="true"
+  [resetPageOnSort]="true"
+  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+  [loading]="(loading$ | async) || false"
+  [rowsPerPageOptions]="[5, 10]">
+  <ng-template pTemplate="header">
+    <tr>
+      <th pSortableColumn="x">X <p-sortIcon field="x"></p-sortIcon></th>
+      <th pSortableColumn="y">Y <p-sortIcon field="y"></p-sortIcon></th>
+      <th pSortableColumn="r">R <p-sortIcon field="r"></p-sortIcon></th>
+      <th pSortableColumn="curDate">Date <p-sortIcon field="curDate"></p-sortIcon></th>
+      <th pSortableColumn="scriptTime">Script Time <p-sortIcon field="scriptTime"></p-sortIcon></th>
+      <th pSortableColumn="hit">Result <p-sortIcon field="hit"></p-sortIcon></th>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="body" let-result>
+    <tr>
+      <td>{{ result.x }}</td>
+      <td>{{ result.y }}</td>
+      <td>{{ result.r }}</td>
+      <td>{{ result.curDate | date:'MMM d, y, H:mm:ss'}}</td>
+      <td>{{ result.scriptTime }}ms</td>
+      <td [ngClass]="{
+      'success-text': result.hit,
+      'failure-text': !result.hit
+      }">{{ result.hit ? "gigachad": "party pooper" }}</td>
+    </tr>
+  </ng-template>
+</p-table>
+
+

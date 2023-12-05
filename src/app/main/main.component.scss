@@ -1,0 +1,42 @@
+.x-field, .r-field{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.single-field {
+  margin-top: 5%;
+}
+
+.form-content {
+  display: flex;
+  align-items: center;
+  margin-bottom: 4%;
+}
+
+.input-container {
+  margin-right: 5%;
+}
+
+.checkbox-container {
+  margin-bottom: 10px;
+}
+
+.button-holder {
+  margin-left: auto;
+  margin-right: 0;
+  width: 100%;
+}
+
+.main-content {
+  margin: 12% auto;
+}
+
+.table-content {
+  margin: 20% auto;
+}
+
+.canvas-container {
+  background: var(--surface-ground);
+  border-radius: 10px;
+  padding: 5px;
+}

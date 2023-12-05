@@ -1,0 +1,85 @@
+<div class="card main-content">
+  <h1 class="big-header">Test your accuracy and aim!</h1>
+  <form [formGroup]="checkForm" (ngSubmit)="onSubmit()">
+    <div class="form-content">
+      <div class="input-container">
+        <div formArrayName="x" id="x-container" class = "single-field x-field">
+          <label for="x-container">X:</label>
+          <div *ngFor="let control of x.controls; let i = index" class="checkbox-container">
+            <p-checkbox name="x" value="{{xConstraints[i]}}" [binary] = "true" label="{{xConstraints[i]}}" [formControlName]="i"></p-checkbox>
+          </div>
+        </div>
+        <small [ngClass]="{
+      'p-error': true,
+      'hidden-text': !(x.invalid && x.dirty)
+      }">
+          <div class="message-block">
+            <div class="error-message">
+              Choose only one element
+            </div>
+          </div>
+        </small>
+
+        <div class="single-field y-field">
+          <div class="input-field">
+            <span class="p-float-label p-input-icon-left">
+              <i class="pi pi-arrow-right" [class.error-icon]="y?.invalid && y?.dirty"></i>
+              <input pInputText name = "y" id="y" type="text" formControlName="y"/>
+              <label htmlFor="y">Y</label>
+            </span>
+            <small [ngClass]="{
+      'p-error': true,
+      'hidden-text': !(y?.invalid && y?.dirty)
+      }">
+              <div class="message-block">
+                <div class="error-message" *ngIf="y?.errors?.['invalidFormatY']">
+                  format #[.,]###
+                </div>
+
+                <div class="error-message">
+                  -3 <= y <= 3
+                </div>
+              </div>
+            </small>
+          </div>
+        </div>
+
+        <div id="r-container" class = "single-field r-field">
+          <label for="r-container">R:</label>
+          <div formArrayName="r" *ngFor="let control of r.controls; let i = index" class="checkbox-container">
+            <p-checkbox name="r" value="{{rConstraints[i]}}" [binary] = "true" label="{{rConstraints[i]}}" [formControlName]="i" (onChange)="canvas.fillCanvas()"></p-checkbox>
+          </div>
+        </div>
+        <small [ngClass]="{
+      'p-error': true,
+      'hidden-text': !(r.invalid && r.dirty)
+      }">
+          <div class="message-block">
+            <div class="error-message" *ngIf="r.errors?.['invalidCount']">
+              Choose only one element
+            </div>
+
+            <div class="error-message">
+              Pick positive radius
+            </div>
+          </div>
+        </small>
+      </div>
+
+      <div class="additional-content">
+        <div class="canvas-container">
+          <app-canvas [rArray]="r" [results]="results"></app-canvas>
+        </div>
+      </div>
+    </div>
+    <div class="button-holder">
+      <button pButton pRipple label="Check" type="submit" class="p-button-outlined" [disabled]="!checkForm.valid" [loading]="(submitLoading$ | async) || false"></button>
+    </div>
+  </form>
+</div>
+
+<div class="card table-content">
+  <app-table [results]="results" [loading$]="tableLoading$"></app-table>
+</div>
+
+<p-toast></p-toast>
