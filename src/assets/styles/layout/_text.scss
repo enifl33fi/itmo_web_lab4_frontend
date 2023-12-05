@@ -21,3 +21,10 @@
 .message-block .error-message:first-child {
   display: block;
 }
+
+.success-text {
+  color: var(--green-300)
+}
+.failure-text {
+  color: var(--red-300)
+}

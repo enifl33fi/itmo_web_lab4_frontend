@@ -3,7 +3,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ValidationService} from "../validation.service";
 import {UserForm} from "../dto/userDto";
 import {AuthApiService} from "../auth-api.service";
-import {BehaviorSubject, Subject} from "rxjs";
+import {BehaviorSubject} from "rxjs";
 
 @Component({
   selector: 'app-sign-in',

@@ -5,7 +5,7 @@ import {
   HttpEvent,
   HttpInterceptor, HttpErrorResponse
 } from '@angular/common/http';
-import {BehaviorSubject, catchError, filter, Observable, of, switchMap, take, throwError} from 'rxjs';
+import {BehaviorSubject, catchError, filter, Observable, switchMap, take, throwError} from 'rxjs';
 import {AuthApiService} from "./auth-api.service";
 import {StorageService} from "./storage.service";
 import {environment} from "./enviroment";

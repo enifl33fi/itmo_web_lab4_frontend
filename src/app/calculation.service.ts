@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {environment} from "./enviroment";
 import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {AlertApiService} from "./alert-api.service";
-import {catchError, map, Observable, of, toArray} from "rxjs";
+import {catchError, map, Observable, of} from "rxjs";
 import {CheckRequest, CheckResponse, HistoryResponse, Result} from "./dto/resultDto";
 
 const CALC_URL: string = `${environment.apiUrl}/calc`

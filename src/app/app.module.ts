@@ -16,7 +16,6 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import {CheckboxModule} from "primeng/checkbox";
 import {OverlayPanelModule} from "primeng/overlaypanel";
 import { SignInComponent } from './sign-in/sign-in.component';
-import { CustomInputComponent } from './custom-input/custom-input.component';
 import {ToastModule} from "primeng/toast";
 import {MessageService} from "primeng/api";
 import {TokenInterceptor} from "./token.interceptor";
@@ -25,6 +24,9 @@ import {StorageService} from "./storage.service";
 import { MenubarComponent } from './menubar/menubar.component';
 import { AuthLayoutComponent } from './auth-layout/auth-layout.component';
 import { BasicLayoutComponent } from './basic-layout/basic-layout.component';
+import { TableComponent } from './table/table.component';
+import {TableModule} from "primeng/table";
+import { CanvasComponent } from './canvas/canvas.component';
 
 
 @NgModule({
@@ -33,27 +35,29 @@ import { BasicLayoutComponent } from './basic-layout/basic-layout.component';
     WelcomePageComponent,
     SignUpComponent,
     SignInComponent,
-    CustomInputComponent,
     MainComponent,
     MenubarComponent,
     AuthLayoutComponent,
-    BasicLayoutComponent
+    BasicLayoutComponent,
+    TableComponent,
+    CanvasComponent
   ],
-    imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
-        AppRoutingModule,
-        ImageModule,
-        CardModule,
-        InputTextModule,
-        ButtonModule,
-        RippleModule,
-        CheckboxModule,
-        OverlayPanelModule,
-        ReactiveFormsModule,
-        HttpClientModule,
-        ToastModule
-    ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    ImageModule,
+    CardModule,
+    InputTextModule,
+    ButtonModule,
+    RippleModule,
+    CheckboxModule,
+    OverlayPanelModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    ToastModule,
+    TableModule
+  ],
   providers: [MessageService,
     {
       provide: HTTP_INTERCEPTORS,

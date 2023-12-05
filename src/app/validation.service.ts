@@ -7,7 +7,7 @@ import {coords} from "./coords";
 })
 export class ValidationService {
 
-  private usernameRegExp: RegExp = /^[\w]{1,25}$/
+  private usernameRegExp: RegExp = /^\w{1,25}$/
   private yRegExp: RegExp = /^-?\d+([.,]\d{1,3})?$/
   constructor() { }
 

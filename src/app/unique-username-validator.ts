@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {AbstractControl, AsyncValidator, ValidationErrors} from "@angular/forms";
 import {AuthenticationService} from "./authentication.service";
-import {debounceTime, distinctUntilChanged, first, map, Observable, switchMap, timer} from "rxjs";
+import {first, map, Observable, switchMap, timer} from "rxjs";
 
 @Injectable({providedIn: 'root'})
 export class UniqueUsernameValidator implements AsyncValidator{

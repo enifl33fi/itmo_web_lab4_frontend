@@ -1,4 +1,4 @@
-import {Injectable, OnInit} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {UserTokens} from "./dto/tokenDto";
 
 @Injectable({
@@ -53,6 +53,7 @@ export class StorageService{
     if (this.deepSave) {
       this.removeLocalRefreshToken();
     } else {
+      this.setDeepSave(false);      //спорно, нужно проверить
       this.removeSessionRefreshToken();
     }
   }

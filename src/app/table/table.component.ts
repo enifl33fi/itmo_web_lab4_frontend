@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {Result} from "../dto/resultDto";
 import {BehaviorSubject} from "rxjs";
 

@@ -1,10 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {ValidationService} from "../validation.service";
-import {UserForm, UserRegistration} from "../dto/userDto";
-import {StorageService} from "../storage.service";
-import {AuthenticationService} from "../authentication.service";
-import {MapperService} from "../mapper.service";
+import {UserForm} from "../dto/userDto";
 import {UniqueUsernameValidator} from "../unique-username-validator";
 import {AuthApiService} from "../auth-api.service";
 import {BehaviorSubject} from "rxjs";

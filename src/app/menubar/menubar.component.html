@@ -1,9 +1,15 @@
 <div class="topbar">
 
-  <ng-template [ngIf]="!authApiService.isLogged()">
+  <ng-template [ngIf]="!authApiService.isLogged()" [ngIfElse]="authorizedContent">
     <div class="topbar-right-content">
       <button pButton pRipple label="Sign in" class="topbar-button p-button-plain p-button-text" routerLink="/signin"></button>
       <button pButton pRipple label="Sign up" class="p-button-outlined topbar-button" routerLink="/signup"></button>
+    </div>
+  </ng-template>
+
+  <ng-template #authorizedContent>
+    <div class="topbar-right-content">
+      <button pButton pRipple label="Logout" class="p-button-outlined topbar-button" (click)="authApiService.logout()"></button>
     </div>
   </ng-template>
 </div>
