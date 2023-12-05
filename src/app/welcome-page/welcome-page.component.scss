@@ -38,3 +38,9 @@
 .welcome-content {
   margin-bottom: 20%;
 }
+
+@media (max-device-width: 600px), (max-width: 600px){
+  .button-holder {
+    width: 100%;
+  }
+}
