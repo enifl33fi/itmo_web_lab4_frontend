@@ -5,17 +5,17 @@ import {DOCUMENT} from "@angular/common";
 import {MapperService} from "../../../../utils/mapper/mapper.service";
 import {CalcApiService} from "../../../../core/service/server/calc/calc-api.service";
 import {ValidationService} from "../../../../utils/validation/validation.service";
-import {AlertApiService} from "../../../../alert-api.service";
+import {AlertApiService} from "../../../../utils/alerts/alert-api.service";
 
 @Component({
   selector: 'app-canvas',
   templateUrl: './canvas.component.html',
   styleUrls: ['./canvas.component.scss']
 })
-export class CanvasComponent implements OnInit{
+export class CanvasComponent implements OnInit {
   @Input() results!: Result[];
   @Input() rArray!: FormArray;
-  rVal: number|null = null;
+  rVal: number | null = null;
 
   constructor(@Inject(DOCUMENT) private _document: Document,
               private mapperService: MapperService,
@@ -46,8 +46,8 @@ export class CanvasComponent implements OnInit{
     if (this.rArray.valid) {
       ctx.fillRect(width / 2 - radius, height / 2, radius, radius / 2)
       ctx.beginPath()
-      ctx.moveTo(width / 2 + radius, height/ 2)
-      ctx.lineTo(width/ 2, height / 2 - radius)
+      ctx.moveTo(width / 2 + radius, height / 2)
+      ctx.lineTo(width / 2, height / 2 - radius)
       ctx.arc(width / 2, height / 2, radius, -Math.PI / 2, Math.PI, true)
       ctx.closePath()
       ctx.fill()
@@ -78,14 +78,14 @@ export class CanvasComponent implements OnInit{
     ctx.moveTo(width / 2 - radius, height / 2 + 5)
     ctx.lineTo(width / 2 - radius, height / 2 - 5)
 
-    ctx.moveTo(width / 2 + 5, height / 2  + radius / 2)
-    ctx.lineTo(width / 2 - 5, height / 2  + radius / 2)
+    ctx.moveTo(width / 2 + 5, height / 2 + radius / 2)
+    ctx.lineTo(width / 2 - 5, height / 2 + radius / 2)
 
     ctx.moveTo(width / 2 + 5, height / 2 + radius)
     ctx.lineTo(width / 2 - 5, height / 2 + radius)
 
-    ctx.moveTo(width / 2 + 5, height / 2  - radius / 2)
-    ctx.lineTo(width / 2 - 5, height / 2  - radius / 2)
+    ctx.moveTo(width / 2 + 5, height / 2 - radius / 2)
+    ctx.lineTo(width / 2 - 5, height / 2 - radius / 2)
 
     ctx.moveTo(width / 2 + 5, height / 2 - radius)
     ctx.lineTo(width / 2 - 5, height / 2 - radius)
@@ -97,7 +97,7 @@ export class CanvasComponent implements OnInit{
 
     ctx.fillText("y", width / 2 + 10, fontSize / 2)
 
-    if (this.rArray.valid && this.rVal !== null)  {
+    if (this.rArray.valid && this.rVal !== null) {
       ctx.fillText(String(this.rVal), width / 2 + 10, height / 2 - radius + fontSize / 2)
       ctx.fillText(String(this.rVal / 2), width / 2 + 10, height / 2 - radius / 2 + fontSize / 2)
       ctx.fillText(String(-this.rVal), width / 2 + 10, height / 2 + radius + fontSize / 2)
@@ -112,10 +112,11 @@ export class CanvasComponent implements OnInit{
 
     ctx.stroke()
 
-    if (this.rArray.valid && this.rVal !== null)  {
+    if (this.rArray.valid && this.rVal !== null) {
       this.drawAllCircles();
     }
   }
+
   drawAllCircles() {
     this.results.forEach(result => this.drawCircle(result))
   }
@@ -141,7 +142,7 @@ export class CanvasComponent implements OnInit{
     ctx.fill()
   }
 
-  sendPressedPoint(ev: any)  {
+  sendPressedPoint(ev: any) {
     const cv = this._document.querySelector('canvas')!;
     const width = cv.width
     const height = cv.height
