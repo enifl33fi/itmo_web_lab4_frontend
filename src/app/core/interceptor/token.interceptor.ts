@@ -52,6 +52,7 @@ export class TokenInterceptor implements HttpInterceptor {
           return next.handle(this.addToken(request, tokens.accessToken));
         }),
         catchError(err => {
+          this.isRefreshing = false;
           this.authApiService.logout();
           return throwError(() => err);
         })
